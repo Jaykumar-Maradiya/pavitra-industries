@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { img } from '@/data/site-data';
@@ -22,15 +22,27 @@ export function HomeClients() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const maxIndex = Math.max(0, clients.length - 5);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : maxIndex));
-  };
+  }, [maxIndex]);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev < maxIndex ? prev + 1 : 0));
-  };
+  }, [maxIndex]);
+
+  // Automatic scrolling interval with pause on hover/touch
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 2800);
+
+    return () => clearInterval(interval);
+  }, [isPaused, nextSlide]);
 
   return (
     <section className="relative w-full overflow-hidden bg-[#636365] py-14 sm:py-16 md:py-20">
@@ -104,12 +116,29 @@ export function HomeClients() {
             <ChevronRight size={20} />
           </motion.button>
 
-          {/* Slider Viewport Track with smooth motion translation */}
-          <div className="overflow-hidden py-3">
+          {/* Slider Viewport Track with smooth motion translation and gesture support */}
+          <div
+            className="overflow-hidden py-3"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
+          >
             <motion.div
-              className="flex"
+              className="flex cursor-grab active:cursor-grabbing"
               animate={{
                 x: `-${currentIndex * (100 / 5)}%`,
+              }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={(_, info) => {
+                const threshold = 50;
+                if (info.offset.x < -threshold) {
+                  nextSlide();
+                } else if (info.offset.x > threshold) {
+                  prevSlide();
+                }
               }}
               transition={{
                 type: 'spring',
