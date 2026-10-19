@@ -170,7 +170,7 @@ export function ProductPage({ product }: { product: Product }) {
           )}
 
           {/* 5. Interactive 3D 360° Motor Viewer (Replaces separate photo strips with a single 3D continuous object) */}
-          {product.slug === 'three-phase-induction-motor' && (
+          {/* {product.slug === 'three-phase-induction-motor' && (
             <section className="border-y border-neutral-200 bg-neutral-100/70 py-12 md:py-16">
               <div className="site-container">
                 <div className="mx-auto max-w-3xl text-center mb-8">
@@ -197,7 +197,7 @@ export function ProductPage({ product }: { product: Product }) {
                 </div>
               </div>
             </section>
-          )}
+          )} */}
 
           {/* 6. Applications Section with Industrial Diagram Graphic */}
           {product.applications && (

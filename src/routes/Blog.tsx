@@ -44,13 +44,13 @@ export function Blog() {
           <BlogHero />
 
           {/* 3D CAD Motor View */}
-          <div className="site-container my-10 flex justify-center">
+          {/* <div className="site-container my-10 flex justify-center">
             <Motor360Viewer
               spriteSheet="/images/360/induction-motor/motor_3d_spritesheet.webp"
               totalFrames={8}
               alt="Three Phase Induction Motor 3D CAD View"
             />
-          </div>
+          </div> */}
 
           {/* 3-Column Blog Cards Grid */}
           <BlogGrid posts={posts} />
