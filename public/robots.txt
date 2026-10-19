@@ -1,0 +1,72 @@
+# ==============================================================================
+# Pavitra Industries - Robots.txt
+# Website: https://pavitraind.com
+# Leading Manufacturer of Electric Motors, Vibratory Motors & Equipment
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Main Search Engine Crawlers (Google, Bing, Yahoo, DuckDuckGo, etc.)
+# ------------------------------------------------------------------------------
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Bingbot
+User-agent: Slurp
+User-agent: DuckDuckBot
+User-agent: Baiduspider
+User-agent: YandexBot
+Allow: /
+Allow: /images/
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.webp$
+Allow: /*.svg$
+Allow: /*.pdf$
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /draft/
+Disallow: /private/
+
+# ------------------------------------------------------------------------------
+# 2. Modern AI Search Crawlers & Assistive Agents (SearchGPT, Perplexity, Copilot)
+# Permitted to crawl and index manufacturer motor specifications and catalog
+# ------------------------------------------------------------------------------
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: ClaudeBot
+User-agent: Applebot
+User-agent: BingChat
+Allow: /
+
+# ------------------------------------------------------------------------------
+# 3. Block Aggressive / Malicious Scrapers & Spam Crawlers
+# ------------------------------------------------------------------------------
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: DotBot
+User-agent: MJ12bot
+User-agent: PetalBot
+Disallow: /
+
+# ------------------------------------------------------------------------------
+# 4. Default Rules for All Other Crawlers
+# ------------------------------------------------------------------------------
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /draft/
+Disallow: /private/
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# Crawl-delay for polite crawling on general bots
+Crawl-delay: 1
+
+# ------------------------------------------------------------------------------
+# Sitemaps
+# ------------------------------------------------------------------------------
+Sitemap: https://pavitraind.com/sitemap.xml
