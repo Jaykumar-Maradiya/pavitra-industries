@@ -13,6 +13,25 @@ export const social = {
 };
 export const brochure = 'https://pavitraind.com/wp-content/uploads/2025/07/PAVITRA-BROUCH.pdf';
 
+export const locations = {
+  headOffice: {
+    title: 'PAVITRA INDUSTRIES, HEAD OFFICE',
+    shortName: 'Head Office',
+    address: 'Plot No.78 Odhav GIDC, Shed No. 09, Anukul Industrial Estate, Ambika Nagar Road, Nr. National Tank, Odhav, Ahmedabad, Gujarat, 382415',
+    mapUrl: 'https://maps.google.com/?q=Pavitra+Industries,+Plot+No.78+Odhav+GIDC,+Shed+No.+09,+Anukul+Industrial+Estate,+Ambika+Nagar+Road,+Nr.+National+Tank,+Odhav,+Ahmedabad,+Gujarat+382415',
+    qrSvg: '/images/qr-head-office.svg',
+    qrPng: '/images/qr-head-office.png'
+  },
+  works: {
+    title: 'PAVITRA INDUSTRIES, WORKS & FACTORY',
+    shortName: 'Works & Factory',
+    address: 'Shed No. 09, Anukul Industrial Estate, Odhav Industrial Zone, Ahmedabad, Gujarat - 382415, India',
+    mapUrl: 'https://maps.google.com/?q=Pavitra+Industries+Works,+Shed+No.+09,+Anukul+Industrial+Estate,+Odhav+Industrial+Zone,+Ahmedabad,+Gujarat+382415',
+    qrSvg: '/images/qr-works.svg',
+    qrPng: '/images/qr-works.png'
+  }
+};
+
 export type Product = {
   slug: string;
   title: string;

@@ -1,6 +1,8 @@
 {
   "include": [
     "next-env.d.ts",
+    "vitest.config.ts",
+    "vitest.setup.ts",
     "app/**/*",
     "src/**/*",
     ".next/types/**/*.ts"
@@ -10,8 +12,7 @@
     "build",
     "dist",
     "out",
-    ".next",
-    "**/*.test.ts"
+    ".next"
   ],
   "compilerOptions": {
     "target": "es2022",

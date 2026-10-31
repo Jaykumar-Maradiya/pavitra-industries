@@ -15,7 +15,7 @@ import {
   FaChevronDown
 } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-import { address, email, phone, social, products, img } from '@/data/site-data';
+import { address, email, phone, social, products, img, locations } from '@/data/site-data';
 
 export function Footer() {
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
@@ -65,24 +65,21 @@ export function Footer() {
                   Our Products
                 </h3>
                 <FaChevronDown
-                  className={`lg:hidden text-xs text-neutral-400 transition-transform ${
-                    openSections.products ? 'rotate-180' : ''
-                  }`}
+                  className={`lg:hidden text-xs text-neutral-400 transition-transform ${openSections.products ? 'rotate-180' : ''
+                    }`}
                 />
               </button>
 
               <ul
-                className={`mt-4 space-y-2.5 text-[13px] text-neutral-300 lg:block ${
-                  openSections.products ? 'block' : 'hidden'
-                }`}
+                className={`mt-4 space-y-2.5 text-[13px] text-neutral-300 lg:block ${openSections.products ? 'block' : 'hidden'
+                  }`}
               >
                 {productList.map((item, idx) => (
                   <li key={item.slug}>
                     <Link
                       href={item.slug === 'all-products' ? '/#products' : `/${item.slug}/`}
-                      className={`hover:text-white transition-colors duration-200 block ${
-                        idx === productList.length - 1 ? 'font-bold text-white pt-1' : ''
-                      }`}
+                      className={`hover:text-white transition-colors duration-200 block ${idx === productList.length - 1 ? 'font-bold text-white pt-1' : ''
+                        }`}
                     >
                       {item.title}
                     </Link>
@@ -102,16 +99,14 @@ export function Footer() {
                   Quick Links
                 </h3>
                 <FaChevronDown
-                  className={`lg:hidden text-xs text-neutral-400 transition-transform ${
-                    openSections.links ? 'rotate-180' : ''
-                  }`}
+                  className={`lg:hidden text-xs text-neutral-400 transition-transform ${openSections.links ? 'rotate-180' : ''
+                    }`}
                 />
               </button>
 
               <div
-                className={`mt-4 grid grid-cols-2 gap-4 text-[13px] text-neutral-300 lg:grid ${
-                  openSections.links ? 'grid' : 'hidden'
-                }`}
+                className={`mt-4 grid grid-cols-2 gap-4 text-[13px] text-neutral-300 lg:grid ${openSections.links ? 'grid' : 'hidden'
+                  }`}
               >
                 <ul className="space-y-2.5">
                   <li>
@@ -209,30 +204,55 @@ export function Footer() {
                     PAVITRA INDUSTRIES, HEAD OFFICE
                   </h3>
                   <FaChevronDown
-                    className={`lg:hidden text-xs text-neutral-400 transition-transform ${
-                      openSections.office ? 'rotate-180' : ''
-                    }`}
+                    className={`lg:hidden text-xs text-neutral-400 transition-transform ${openSections.office ? 'rotate-180' : ''
+                      }`}
                   />
                 </button>
 
                 <div
-                  className={`mt-3 grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-4 items-start lg:grid ${
-                    openSections.office ? 'grid' : 'hidden'
-                  }`}
+                  className={`mt-3 grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-4 items-start lg:grid ${openSections.office ? 'grid' : 'hidden'
+                    }`}
                 >
                   <div className="flex gap-2.5 text-[13px] text-neutral-300 leading-relaxed">
                     <FaMapMarkerAlt className="shrink-0 text-white mt-1 text-sm" />
                     <div>
                       <strong className="text-white block font-semibold mb-0.5">Address:</strong>
-                      Plot No.78 Odhav GIDC, Shed No. 09, Anukul Industrial Estate, Ambika Nagar Road, Nr. National Tank, Odhav, Ahmedabad, Gujarat, 382415
+                      {locations.headOffice.address}
+                      <div className="mt-2">
+                        <a
+                          href={locations.headOffice.mapUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 hover:underline transition-colors font-medium"
+                          title="Open Head Office location in Google Maps"
+                        >
+                          <FaMapMarkerAlt className="text-[11px]" />
+                          <span>View on Google Maps</span>
+                          <span aria-hidden="true">→</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                  <div className="shrink-0 flex justify-center sm:justify-start">
-                    <img
-                      src="/images/qr1.jpg"
-                      alt="Head Office Location QR"
-                      className="w-24 h-24 sm:w-26 sm:h-26 rounded bg-white p-1 object-contain shadow-md"
-                    />
+                  <div className="shrink-0 flex flex-col items-center justify-center sm:justify-start">
+                    <a
+                      href={locations.headOffice.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Scan with phone or click to open Head Office on Google Maps"
+                      aria-label="Head Office Location Google Maps QR Code - Click or Scan"
+                      className="group/qr block bg-white p-2 rounded-lg shadow-md hover:shadow-xl transition-all duration-200 border-2 border-transparent hover:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400 text-center"
+                    >
+                      <img
+                        src={locations.headOffice.qrSvg}
+                        alt="Head Office Location Google Maps QR Code"
+                        width={96}
+                        height={96}
+                        className="w-22 h-22 sm:w-24 sm:h-24 object-contain transition-transform duration-200 group-hover/qr:scale-105"
+                      />
+                      {/* <span className="mt-1 flex items-center justify-center gap-1 text-[10px] font-bold uppercase tracking-wider text-neutral-800 group-hover/qr:text-amber-600 transition-colors">
+                        <FaMapMarkerAlt className="text-red-600 text-[9px]" /> Scan / Click
+                      </span> */}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -248,30 +268,55 @@ export function Footer() {
                     PAVITRA INDUSTRIES, WORKS & FACTORY
                   </h3>
                   <FaChevronDown
-                    className={`lg:hidden text-xs text-neutral-400 transition-transform ${
-                      openSections.factory ? 'rotate-180' : ''
-                    }`}
+                    className={`lg:hidden text-xs text-neutral-400 transition-transform ${openSections.factory ? 'rotate-180' : ''
+                      }`}
                   />
                 </button>
 
                 <div
-                  className={`mt-3 grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-4 items-start lg:grid ${
-                    openSections.factory ? 'grid' : 'hidden'
-                  }`}
+                  className={`mt-3 grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-4 items-start lg:grid ${openSections.factory ? 'grid' : 'hidden'
+                    }`}
                 >
                   <div className="flex gap-2.5 text-[13px] text-neutral-300 leading-relaxed">
                     <FaMapMarkerAlt className="shrink-0 text-white mt-1 text-sm" />
                     <div>
                       <strong className="text-white block font-semibold mb-0.5">Address:</strong>
-                      Shed No. 09, Anukul Industrial Estate, Odhav Industrial Zone, Ahmedabad, Gujarat - 382415, India
+                      {locations.works.address}
+                      <div className="mt-2">
+                        <a
+                          href={locations.works.mapUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 hover:underline transition-colors font-medium"
+                          title="Open Works & Factory location in Google Maps"
+                        >
+                          <FaMapMarkerAlt className="text-[11px]" />
+                          <span>View on Google Maps</span>
+                          <span aria-hidden="true">→</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                  <div className="shrink-0 flex justify-center sm:justify-start">
-                    <img
-                      src="/images/qr1.jpg"
-                      alt="Works Location QR"
-                      className="w-24 h-24 sm:w-26 sm:h-26 rounded bg-white p-1 object-contain shadow-md"
-                    />
+                  <div className="shrink-0 flex flex-col items-center justify-center sm:justify-start">
+                    <a
+                      href={locations.works.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Scan with phone or click to open Works & Factory on Google Maps"
+                      aria-label="Works & Factory Location Google Maps QR Code - Click or Scan"
+                      className="group/qr block bg-white p-2 rounded-lg shadow-md hover:shadow-xl transition-all duration-200 border-2 border-transparent hover:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400 text-center"
+                    >
+                      <img
+                        src={locations.works.qrSvg}
+                        alt="Works & Factory Location Google Maps QR Code"
+                        width={96}
+                        height={96}
+                        className="w-22 h-22 sm:w-24 sm:h-24 object-contain transition-transform duration-200 group-hover/qr:scale-105"
+                      />
+                      {/* <span className="mt-1 flex items-center justify-center gap-1 text-[10px] font-bold uppercase tracking-wider text-neutral-800 group-hover/qr:text-amber-600 transition-colors">
+                        <FaMapMarkerAlt className="text-red-600 text-[9px]" /> Scan / Click
+                      </span> */}
+                    </a>
                   </div>
                 </div>
               </div>
